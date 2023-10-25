@@ -1,7 +1,6 @@
 import "./style.css";
 import { NightVision } from "night-vision";
 import { DataLoader } from "./lib/dataLoader.js";
-import wsx from "./lib/wsx.js";
 import sampler from "./lib/ohlcvSampler.js";
 import ticks from "./data/ticks.json";
 
