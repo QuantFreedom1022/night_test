@@ -1,8 +1,8 @@
 import "./style.css";
 import { NightVision } from "night-vision";
-import { DataLoader } from "./lib/dataLoader.js";
-import sampler from "./lib/ohlcvSampler.js";
+import sampler from "./ohlcvSampler.js";
 import ticks from "./data/ticks.json";
+import data from "./data/candles.json";
 
 document.querySelector("#app").innerHTML = `
 <style>
@@ -13,18 +13,10 @@ body {
 <div id="chart-container"></div>
 `;
 let chart = new NightVision("chart-container", {
-  // data,
+  data,
   autoResize: true,
   colors: { back: "#111113", grid: "#2e2f3055" },
   config: {},
-});
-let dl = new DataLoader();
-
-// // Load the first piece of the data
-dl.load((data) => {
-  chart.data = data; // Set the initial data
-  chart.fullReset(); // Reset tre time-range
-  chart.se.uploadAndExec(); // Upload & exec scripts
 });
 
 let count = 0;
