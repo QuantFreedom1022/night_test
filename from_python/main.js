@@ -6,6 +6,7 @@ import StopLosses from "./custom_navy_files/stop_loss.navy";
 import TakeProfits from "./custom_navy_files/take_profit.navy";
 import TPFilled from "./custom_navy_files/tp_filled.navy";
 import SLFilled from "./custom_navy_files/sl_filled.navy";
+import MovedSL from "./custom_navy_files/moved_sl.navy";
 
 document.querySelector("#app").innerHTML = `
 <style>
@@ -19,7 +20,7 @@ body {
 let chart = new NightVision("chart-container", {
   autoResize: true,
   colors: { back: "#111113", grid: "#2e2f3055" },
-  scripts: [Entries, StopLosses, TakeProfits, TPFilled, SLFilled],
+  scripts: [Entries, StopLosses, TakeProfits, TPFilled, SLFilled, MovedSL],
 });
 
 let dl = new DataLoader();
@@ -51,7 +52,10 @@ function updateCandles() {
       let sl_filled = chart.hub.chart.overlays[4].data;
       sl_filled.push(dl.more_filled_sl(counter));
 
-      let candles = chart.hub.chart.overlays[5].data;
+      let moved_sl = chart.hub.chart.overlays[5].data;
+      moved_sl.push(dl.more_moved_sl(counter));
+
+      let candles = chart.hub.chart.overlays[6].data;
       candles.push(dl.more_candles(counter));
 
       // let rsi = chart.data.panes[1].overlays[0].data;

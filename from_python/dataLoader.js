@@ -6,6 +6,7 @@ var takeprofits = data.tp_prices;
 var candles = data.candles;
 var tp_filled = data.tp_filled;
 var sl_filled = data.sl_filled;
+var moved_sl = data.moved_sl;
 // var rsi = data.rsi;
 
 class DataLoader {
@@ -46,6 +47,13 @@ class DataLoader {
               name: "Filled SL",
               type: "SLFilled",
               data: sl_filled.slice(0, number),
+              settings: {},
+              props: {},
+            },
+            {
+              name: "Moved SL",
+              type: "MovedSL",
+              data: moved_sl.slice(0, number),
               settings: {},
               props: {},
             },
@@ -91,6 +99,9 @@ class DataLoader {
   }
   more_filled_tp(number) {
     return tp_filled.slice(number - 1, number)[0];
+  }
+  more_moved_sl(number) {
+    return moved_sl.slice(number - 1, number)[0];
   }
   // more_rsi(number) {
   //   return rsi.slice(number - 1, number)[0];
