@@ -21,7 +21,6 @@ draw(ctx) {
     const view = $core.view
 
     ctx.fillStyle = $props.color
-    ctx.strokeStyle = $props.color
     ctx.lineWidth = $props.linewidth
     
     const half = $props.size
@@ -35,9 +34,6 @@ draw(ctx) {
         ctx.moveTo(x, y)
         ctx.lineTo(x + side * 0.63, y + side )
         ctx.lineTo(x - side * 0.63, y + side )
-        ctx.lineTo(x + side * 0.63, y - side )
-        ctx.lineTo(x - side * 0.63, y - side )
     }
-    ctx.stroke()
     ctx.fill()
 }

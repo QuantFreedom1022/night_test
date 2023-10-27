@@ -35,7 +35,7 @@ dl.load((data) => {
 counter++;
 var candle_length = dl.candle_length();
 function updateCandles() {
-  if (counter < candle_length) {
+  if (counter < 200) {
     try {
       let entries = chart.hub.chart.overlays[0].data;
       entries.push(dl.more_entries(counter));
