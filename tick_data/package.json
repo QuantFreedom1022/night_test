@@ -12,6 +12,7 @@
     "vite": "^4.5.0"
   },
   "dependencies": {
+    "@sveltejs/vite-plugin-svelte": "^2.4.6",
     "cors": "^2.8.5",
     "fastify": "^4.24.3",
     "night-vision": "^0.3.3"

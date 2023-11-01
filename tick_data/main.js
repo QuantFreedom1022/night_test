@@ -3,6 +3,7 @@ import { NightVision } from "night-vision";
 import sampler from "./ohlcvSampler.js";
 import ticks from "./data/ticks.json";
 import data from "./data/candles.json";
+import FootprintsTable from "./navy_files/footprint.navy";
 
 document.querySelector("#app").innerHTML = `
 <style>
@@ -16,6 +17,7 @@ let chart = new NightVision("chart-container", {
   data,
   autoResize: true,
   colors: { back: "#111113", grid: "#2e2f3055" },
+  scripts: [FootprintsTable],
   config: {},
 });
 
