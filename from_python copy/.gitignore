@@ -1,0 +1,9 @@
+/vendor
+/node_modules
+.idea
+/dist
+composer.phar
+composer.lock
+.DS_Store
+templates.js
+.codesandbox
