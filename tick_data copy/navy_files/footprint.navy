@@ -1,0 +1,38 @@
+
+// Navy ~ 0.1-lite
+// ^^^ First comment should provide a NavyJS version
+
+// Meta tag
+[OVERLAY name=Foot, ctx=Canvas, author=ChartMaster, version=1.0.0]
+
+// Define new props
+// (the same as in 'settings.props' of Overlay object)
+prop('size', {  type: 'number', def: '30' })
+prop('color', {  type: 'color', def: '#FB9B3B' })
+
+// Any variables/constants
+
+// Draw function (called on each update)
+// Library provides a lot of useful variables to make
+// overlays ($core in the main collection)
+draw(ctx) {
+    const layout = $core.layout
+    const view = $core.view
+
+    const size = $props.size
+    const half = size / 2
+    const data = view.src
+
+    ctx.fillStyle = $props.color
+
+    for (var i = view.i1, n = view.i2; i <= n; i++) {
+        let p = data[i]
+        let x = layout.ti2x(p[0], i)
+        let y = layout.value2y(150)
+        ctx.fillRect(x-half, y, size*2, size);
+        ctx.fillText("testing vol", x-half, y);
+
+    }
+}
+
+yRange(data, hi, lo) => [500,0,false,]
