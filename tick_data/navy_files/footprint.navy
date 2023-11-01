@@ -18,21 +18,24 @@ prop('color', {  type: 'color', def: '#FB9B3B' })
 draw(ctx) {
     const layout = $core.layout
     const view = $core.view
+    let ww = layout.pxStep
 
     const size = $props.size
     const half = size / 2
     const data = view.src
 
-    ctx.fillStyle = $props.color
+    var ratio = .1
+    var text_size = ww * .13;
 
-    let ww = layout.pxStep
-    ctx.font = "10px Arial";
+    ctx.font = (text_size|0) + "px Arial";
     for (var i = view.i1, n = view.i2; i <= n; i++) {
         let p = data[i]
         let x = layout.ti2x(p[0], i)
         let y = layout.value2y(150)
-        ctx.fillRect(x, y, ww, size);
-        ctx.fillText("testing vol", x-half, y);
+        ctx.fillStyle = "#FB9B3B"
+        ctx.fillRect(x-(ww/2), y, ww, size);
+        ctx.fillStyle = "#000000"
+        ctx.fillText((p[2]), x+10, y+(y/4));
         
 
     }
