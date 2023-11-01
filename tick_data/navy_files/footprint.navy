@@ -35,4 +35,4 @@ draw(ctx) {
     }
 }
 
-yRange(data, hi, lo) => [500,0,false,]
+yRange(data, hi, lo) => [500,0,false]
