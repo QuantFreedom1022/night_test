@@ -18,7 +18,7 @@ let chart = new NightVision("chart-container", {
   autoResize: true,
   colors: { back: "#111113", grid: "#2e2f3055" },
   scripts: [FootprintsTable],
-  config: {},
+  // config: { CANDLEW: 1 },
 });
 
 let count = 0;
