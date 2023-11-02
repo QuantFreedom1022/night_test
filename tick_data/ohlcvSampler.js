@@ -1,21 +1,40 @@
-export default function sample(ohlcv, trade, vol_per_candle = 1000000) {
-  let last = ohlcv[ohlcv.length - 1];
-  if (!last) return;
+const M = 1000000;
+const K = 1000;
+
+function getCountSize(count) {
+  if (count > M) {
+    return `${(count / M).toFixed(2)}M`;
+  } else if (count > K) {
+    return `${(count / K).toFixed(0)}K`;
+  } else {
+    return count.toFixed(0);
+  }
+}
+
+export default function sample(candles, foot, trade, vol_per_candle = 1000000) {
+  let last_candle = candles[candles.length - 1];
+  let last_foot = foot[candles.length - 1];
+  if (!last_candle && !last_foot) return;
   let tick = trade["price"];
   let volume = trade["volume"] || 0;
   let timestamp = trade["timestamp"];
 
-  if (last[5] > vol_per_candle) { // i want to go over volume then print new candle
+  if (last_candle[5] > vol_per_candle) {
+    // i want to go over volume then print new candle
     // And new zero-height candle
     let nc = [timestamp, tick, tick, tick, tick, volume];
+    let nf = [timestamp, 65, volume];
     //callback('candle-close', symbol)
-    ohlcv.push(nc);
+    candles.push(nc);
+    foot.push(nf);
     return true; // Make update('range')
   } else {
-    last[2] = Math.max(tick, last[2]);
-    last[3] = Math.min(tick, last[3]);
-    last[4] = tick;
-    last[5] += volume;
+    last_candle[2] = Math.max(tick, last_candle[2]);
+    last_candle[3] = Math.min(tick, last_candle[3]);
+    last_candle[4] = tick;
+    last_candle[5] += volume;
+    last_foot[2] = getCountSize(last_candle[5]);
+
     return false; // Make regular('update')
   }
 }

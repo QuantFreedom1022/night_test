@@ -23,14 +23,17 @@ let chart = new NightVision("chart-container", {
 
 let count = 0;
 function updatebyticks() {
-  let data = chart.hub.mainOv.data;
+  let candle_data = chart.hub.mainOv.data;
+  let foot_data = chart.data.panes[1].overlays[0].data;
+
   let tick = ticks[count];
   let trade = {
     price: tick[1],
     volume: tick[1] * tick[2],
     timestamp: tick[0],
   };
-  if (sampler(data, trade)) {
+
+  if (sampler(candle_data, foot_data, trade)) {
     chart.scroll(); // Scroll forward
   }
   chart.update("data"); // New candle
