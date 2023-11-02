@@ -39,6 +39,11 @@ draw(ctx) {
         ctx.fillRect(x-(ww/2), y, ww, size);
         ctx.fillStyle = "#000000";
         ctx.fillText((p[2]), x+(ww/2)-2, y+15);
+
+        ctx.fillStyle = "#FB9B3B"
+        ctx.fillRect(x-(ww/2), y-size, ww, size);
+        ctx.fillStyle = "#000000";
+        ctx.fillText((p[1]), x+(ww/2)-2, y-size+15);
         
 
     }

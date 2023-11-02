@@ -22,8 +22,9 @@ export default function sample(candles, foot, trade, vol_per_candle = 1000000) {
   if (last_candle[5] > vol_per_candle) {
     // i want to go over volume then print new candle
     // And new zero-height candle
+    var duration = ((timestamp - last_candle[0]) / 1000).toFixed(2);
     let nc = [timestamp, tick, tick, tick, tick, volume];
-    let nf = [timestamp, 65, volume];
+    let nf = [timestamp, duration, volume];
     //callback('candle-close', symbol)
     candles.push(nc);
     foot.push(nf);
