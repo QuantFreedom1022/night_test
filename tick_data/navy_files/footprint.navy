@@ -24,18 +24,21 @@ draw(ctx) {
     const half = size / 2
     const data = view.src
 
-    var ratio = .1
-    var text_size = ww * .13;
+    var dynamic_size = (ww/3)
+    var max_text_size = 12
+    var text_size = dynamic_size > max_text_size ? max_text_size : dynamic_size;
 
-    ctx.font = (text_size|0) + "px Arial";
+    ctx.font = text_size + "px Arial";
+    ctx.textAlign = "right";
+    ctx.textBaseline = "middle";
     for (var i = view.i1, n = view.i2; i <= n; i++) {
         let p = data[i]
         let x = layout.ti2x(p[0], i)
         let y = layout.value2y(150)
         ctx.fillStyle = "#FB9B3B"
         ctx.fillRect(x-(ww/2), y, ww, size);
-        ctx.fillStyle = "#000000"
-        ctx.fillText((p[2]), x+10, y+(y/4));
+        ctx.fillStyle = "#000000";
+        ctx.fillText((p[2]), x+(ww/2)-2, y+15);
         
 
     }
