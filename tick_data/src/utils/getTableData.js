@@ -11,11 +11,11 @@ export function getTime(time) {
 }
 
 export function getCount(count) {
-  if (count > M) {
+  if (Math.abs(count) > M) {
     return `${(count / M).toFixed(2)}M`;
   }
 
-  if (count > K) {
+  if (Math.abs(count) > K) {
     return `${(count / K).toFixed(0)}K`;
   }
 

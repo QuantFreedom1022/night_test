@@ -1,6 +1,7 @@
 import { NightVision } from 'night-vision';
 import data from '~data/candles.json';
-import FootprintsTable from '~navy/footprint.navy';
+import FootStatsTable from '~navy/footStats.navy';
+import FootTable from '~navy/footTable.navy';
 import './style.css';
 import { setIntervalTicks } from '~utils';
 
@@ -10,7 +11,8 @@ let chart = new NightVision('chart-container', {
   data,
   autoResize: true,
   colors: { back: '#111113', grid: '#2e2f3055' },
-  scripts: [FootprintsTable],
+  scripts: [FootStatsTable, FootTable],
+  config: { CANDLEW: 0 },
 });
 
 window.chart = chart;
