@@ -1,0 +1,40 @@
+// Navy ~ 0.1-lite
+
+[OVERLAY name=Foot, ctx=Canvas, author=ChartMaster, version=1.0.0]
+
+prop('size', {  type: 'number', def: '30' })
+prop('color', {  type: 'color', def: '#FB9B3B' })
+const red = "#daf0ff";
+const dark = "#000000";
+
+draw(ctx) {
+    const { layout, view } = $core;
+    const { pxStep } = layout;
+    const { size } = $props;
+    const data = view.src;
+    const dynamicSize = (pxStep/3);
+    const maxTextSize = 12;
+    const textSize = dynamicSize > maxTextSize ? maxTextSize : dynamicSize;
+
+    ctx.font = `${textSize}px Arial`;
+    ctx.textAlign = "right";
+    ctx.textBaseline = "middle";
+
+    for (let i = view.i1, n = view.i2; i <= n; i++) {
+        const p = data[i];
+        const x = layout.ti2x(p[0], i);
+        const y = layout.value2y(150);
+
+        ctx.fillStyle = red;
+        ctx.fillRect(x-(pxStep/2), y, pxStep, size);
+        ctx.fillStyle = dark;
+        ctx.fillText((p[2]), x+(pxStep/2)-2, y+15);
+
+        ctx.fillStyle = red;
+        ctx.fillRect(x-(pxStep/2), y-size, pxStep, size);
+        ctx.fillStyle = dark;
+        ctx.fillText((p[1]), x+(pxStep/2)-2, y-size+15);
+    }
+}
+
+yRange(data, hi, lo) => [500,0,false]
