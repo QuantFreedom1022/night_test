@@ -25,21 +25,9 @@ draw(ctx) {
     for (let i = view.i1, n = view.i2; i <= n; i++) {
         const p = data[i];
         const x = layout.ti2x(p[0], i);
-        const y = layout.value2y(150);
-        const newX = x-(pxStep/2);
-
-        if (baseX !== newX) {
-          baseX = newX;
-          ctx.fillStyle = red;
-          ctx.fillRect(baseX, y, pxStep, size);
-          ctx.fillRect(baseX, y-size, pxStep, size);
-          ctx.fillRect(baseX, y - size * 2, pxStep, size);
-        }
-
+        const y = layout.value2y(p[1][0]);
         ctx.fillStyle = dark;
-        ctx.fillText((p[2]), x+(pxStep/2)-2, y+15);
-        ctx.fillText((p[1]), x+(pxStep/2)-2, y-size+15);
-        ctx.fillText((p[3]), x+(pxStep/2)-2, y-size*2+15);
+        ctx.fillText("hey there", x, y+15);
     }
 }
 
