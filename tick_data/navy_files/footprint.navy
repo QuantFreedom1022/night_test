@@ -25,7 +25,7 @@ draw(ctx) {
     const data = view.src
 
     var dynamic_size = (ww/3)
-    var max_text_size = 12
+    var max_text_size = 11.5
     var text_size = dynamic_size > max_text_size ? max_text_size : dynamic_size;
 
     ctx.font = text_size + "px Arial";
