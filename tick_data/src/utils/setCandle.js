@@ -15,12 +15,19 @@ export function setCandle(
     return false;
   }
 
-  const { price, volume, timestamp } = trade;
+  const { price, volume, timestamp, side } = trade;
   const duration = (timestamp - lastCandle.at(0)) / 1000;
+  let delta = 0;
+
+  if (side === 'buy') {
+    delta += volume;
+  } else {
+    delta -= volume;
+  }
 
   if (lastCandle.at(5) > volPerCandle) {
     const nc = [timestamp, price, price, price, price, volume];
-    const nf = [timestamp, duration, volume];
+    const nf = [timestamp, duration, volume, delta];
 
     candles.push(nc);
     footprint.push(nf);
@@ -34,6 +41,7 @@ export function setCandle(
   lastCandle[5] += volume;
   lastFootprint[2] = getCount(lastCandle.at(5));
   lastFootprint[1] = getTime(duration);
+  lastFootprint[3] = getCount(delta);
 
   return false;
 }

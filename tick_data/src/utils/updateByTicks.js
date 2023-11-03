@@ -12,6 +12,7 @@ export function updateByTicks() {
     price: tick.at(1),
     volume: tick.at(1) * tick.at(2),
     timestamp: tick.at(0),
+    side: tick.at(3),
   };
 
   if (setCandle(candleData, footData, trade)) {
